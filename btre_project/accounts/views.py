@@ -1,13 +1,24 @@
 from django.shortcuts import render, redirect
+from django.contrib import messages
 
 
 # Create your views here.
 def register(request):
-    return render(request, 'accounts/register.html')
+    if request.method == 'POST':
+        print('REGISTERED')
+        messages.error(request, 'Test error')
+        return redirect('register')
+    else:
+        return render(request, 'accounts/register.html')
 
 
 def login(request):
-    return render(request, 'accounts/login.html')
+    if request.method == 'POST':
+        print('logged in')
+        messages.error(request, 'Test error')
+        return redirect('login')
+    else:
+        return render(request, 'accounts/login.html')
 
 
 def logout(request):
