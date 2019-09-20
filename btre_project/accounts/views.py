@@ -1,17 +1,18 @@
 from django.shortcuts import render, redirect
 from django.contrib import messages, auth
+from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 
 
 # Create your views here.
 def register(request):
     if request.method == 'POST':
-        first_name = request.GET['first_name']
-        last_name = request.GET['last_name']
-        username = request.GET['username']
-        email = request.GET['email']
-        password = request.GET['password']
-        password2 = request.GET['password2']
+        first_name = request.POST['first_name']
+        last_name = request.POST['last_name']
+        username = request.POST['username']
+        email = request.POST['email']
+        password = request.POST['password']
+        password2 = request.POST['password2']
 
         if password == password2:
             if User.objects.filter(username=username).exists():
